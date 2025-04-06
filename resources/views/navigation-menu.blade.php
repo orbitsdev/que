@@ -12,9 +12,30 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if(auth()->user()->role === 'staff')
+                        <x-nav-link href="{{ route('staff.dashboard') }}" :active="request()->routeIs('staff.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('staff.queue') }}" :active="request()->routeIs('staff.queue')">
+                            {{ __('Queue Management') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('admin.branches') }}" :active="request()->routeIs('admin.branches')">
+                            {{ __('Branches') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('admin.counters') }}" :active="request()->routeIs('admin.counters')">
+                            {{ __('Counters') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')">
+                            {{ __('Reports') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -139,9 +160,30 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @if(auth()->user()->role === 'staff')
+                <x-responsive-nav-link href="{{ route('staff.dashboard') }}" :active="request()->routeIs('staff.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('staff.queue') }}" :active="request()->routeIs('staff.queue')">
+                    {{ __('Queue Management') }}
+                </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('admin.branches') }}" :active="request()->routeIs('admin.branches')">
+                    {{ __('Branches') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('admin.counters') }}" :active="request()->routeIs('admin.counters')">
+                    {{ __('Counters') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('admin.users') }}" :active="request()->routeIs('admin.users')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')">
+                    {{ __('Reports') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
